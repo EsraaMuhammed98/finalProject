@@ -1,0 +1,11 @@
+.image img{
+    width: 100%;
+}
+.image{
+    transition: 0.5s;
+}
+.image:hover{
+    cursor: pointer;
+    transform: scale(130% ,130%);
+    /* object-fit: contain; */
+}

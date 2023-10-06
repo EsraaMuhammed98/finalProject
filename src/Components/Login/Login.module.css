@@ -1,0 +1,7 @@
+.forgetPass{
+    transition: 0.3s;
+}
+
+.forgetPass:hover{
+color: var(--main-color);
+}

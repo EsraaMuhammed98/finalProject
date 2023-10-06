@@ -1,0 +1,22 @@
+.category{
+    
+    color: #fff;
+    padding:20px;
+    border-radius: 4px;
+    background-color:  #0aad0a;
+}
+
+.catInfo{
+    position: absolute;
+    right: 10px;
+    top: -50px;
+    z-index:999;
+}
+.sale{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 70px;
+    
+    /* z-index: 999; */
+}

@@ -1,0 +1,195 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap');
+:root
+{
+    --main-color:#0aad0a;
+    --light-color:#f0f3f2;
+    --shadow: rgba(145,158,171,.2) 0px 2px 4px -1px,rgba(145,158,171,.14) 0px 4px 5px 0px,rgba(145,158,171,.12) 0px 1px 10px 0px;
+    --font-family:'Encode Sans Expanded', sans-serif;
+    --rating-color:#ffc908;
+}
+.boderBtn{
+    border: 1px solid #0aad0a;
+    border-radius: 4px;
+    background-color: transparent;
+    padding: 5px;
+}
+form input{
+    margin-bottom: 5px;
+}
+body{
+    font-family: var(--font-family) !important;
+}
+.rating-color
+{
+    color: var(--rating-color);
+}
+.cursor-pointer
+{
+    cursor: pointer;
+}
+a , a:hover{
+    color: black;
+    text-decoration: none;
+}
+.product:hover
+{
+    box-shadow: var(--shadow);
+    border: solid 1px var(--main-color);
+}
+.product .btn 
+{
+    transition: transform 1s , opacity 1s;
+    transform: translateY(100%);
+    opacity: 0;
+}
+.active{
+    color: #fff !important;
+    border-radius: 5px;
+    background-color: var(--main-color);
+    
+}
+.product:hover .btn 
+{
+    opacity: 1;
+    transform: translateY(0%);
+
+}
+.font-sm
+{
+    font-size: 14px;
+}
+.text-main
+{
+    color: var(--main-color);
+}
+.bg-main
+{
+    background-color: var(--main-color) !important;
+}
+.bg-main-light 
+{
+    background-color: var(--light-color) !important;
+}
+
+.cart {
+    position: relative;
+    
+}
+.cart-icon{
+    margin-right: -2px;
+}
+ span.b{
+    position: absolute;
+    top: 0;
+    right: -10px;
+    /* display: inline-block; */
+    width: 20px;
+    height: 20px;
+    background-color: red !important;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 50%;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heart-icon{
+    position: absolute;
+    right: 15px;
+    top: 10px;
+ 
+}
+.clicked{
+    color: red;
+}
+.product{
+    position: relative;
+    transition: .3s;
+    border: 1px solid transparent;
+}
+.wish-list{
+    position: relative;
+}
+.wish{
+    position: absolute;
+    background:var(--light-color);
+    left: 5px;
+    top: 50px;
+    list-style: none;
+    width: 270px;
+    z-index: 9999;
+    min-height: 100px;
+    padding: 10px;
+}
+.logo{
+    text-align: center;
+margin-block: 50px;
+font-size: 30px;
+font-weight: bolder;
+text-shadow: 2px 5px 3px rgba(10, 173, 10, 0.705);
+}
+.animate__flip{
+        animation-iteration-count: infinite;
+font-size: 30px;
+animation-duration: 4s;
+}
+.bg{
+    background:url('./Assets/images/shopping-cart-card-icon-discounts_116441-26066.avif');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    filter: blur(4px);
+    position: relative;
+    height: 80vh;
+}
+.form-style{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: #fff;
+    width: 50%;
+    
+    transform: translate(-50%,-50%);
+}
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    transition: 0.5s;
+
+}
+ 
+.boxContent{
+    border: 1px solid var(--main-color);
+    padding: 50px 20px;
+    border-radius: 4px;
+    /* text-align: center;         */
+}
+.boxContent:hover{
+    box-shadow: 0 0 2px var(--main-color);
+    
+}
+
+.page-link{
+    border: 1px solid var(--main-color);
+    color:var(--main-color);
+}
+.page-link:hover{
+    color: #0aad0a;
+    background:var(--light-color);
+}
+.page-link:focus{
+    background: #0aad0a;
+    border-color:#0aad0a ;
+    box-shadow:  0 0 0 0.25rem rgba(13,253,110,0.25);
+
+}
+.active>.page-link{
+    background-color: #0aad0a;
+    border-color:#0aad0a ;
+    box-shadow:  0 0 0 0.25rem rgba(13,253,110,0.25);
+}

@@ -1,0 +1,17 @@
+
+.user{
+    display: flex ;
+    justify-content: center;       
+align-items: center ;
+margin-bottom: 15px;
+}
+
+.user i{
+        font-size: 45px;
+        padding: 10px;
+        border: 1px solid  var(--main-color);
+        border-radius: 50%;
+        /* width: 70px;
+        height: 70px; */
+
+    }
