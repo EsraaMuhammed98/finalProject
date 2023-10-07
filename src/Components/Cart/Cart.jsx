@@ -50,9 +50,7 @@ async function cartProduct() {
   } 
 
 useEffect(()=>{
-  if(cart){
     cartProduct()
-  }
 },[cart])
 
 

@@ -28,51 +28,45 @@ export const MainNav = (pros) => {
       
       ]
      
-      let navigate = useNavigate()
     let {getProductFromCart} =useContext(cartContext)
     let {getWishList , deleteFromWishList} =useContext(wishContext)
 
-    let [numOfCartItems , setNumOfCartItems] = useState(0)
+    let [numOfCartItems , setNumOfCartItems] = useState(null)
     let [wishes , setWishes] = useState([])
-    let [searchText, setSearchText] = useState('');
-     function handleSearch(e){
-      setSearchText(e.target.value)
-     }
+    
     
      let [profile , setProfile] = useState({})
-     let {userToken , setUserToken}= useContext(userContext)
+     let {userToken , search , setSearch}= useContext(userContext)
      
      async function getNumbersOfCartItems(){
         let {data} =await getProductFromCart()
         setNumOfCartItems(data)
       }
      
-      async function getWises(){
-       
+      async function getWises(){   
         let {data} =await getWishList()
           setWishes(data)
         }
+
       async function deleteWish(id){
         // document.querySelector('.wish').classList.toggle('d-none')
         let {data} =await deleteFromWishList(id)
           setWishes(data)
         }
      
-      function logOut(){
-        localStorage.removeItem('token')
-        setUserToken(null)
-        navigate('/login')
-      }
+      
     useEffect(()=>{
-      getNumbersOfCartItems()
+      getWises()
+        getNumbersOfCartItems()
       
     },[])
+    
   return <>
     <div className="w-100 py-3 d-flex align-items-center ">
         <Link className="navbar-brand" to="/">
           <img src={logo} alt="fresh cart logo" />
         </Link>
-             <input type="search" value={searchText}   className='form-control w-50' id="" placeholder='Search On Products' onChange={handleSearch}  />
+             <input type="search" onChange={(e)=>setSearch(e.target.value)}    className='form-control w-50' id="" placeholder='Search On Products'    />
                  
                   <div className="dropdown d-fex mx-3">
                     <label className=" dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -89,8 +83,7 @@ export const MainNav = (pros) => {
                     </div>
                   </div> 
                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-             {userToken&& <>
-
+             {userToken?<>
 
           <li className="nav-item dropdown profile-list me-2">
                 <Link className="nav-link dropdown-toggle" role="button" to='#' data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false"><i className="fa-solid fa-user-pen"></i></Link>
@@ -159,12 +152,10 @@ export const MainNav = (pros) => {
                 <Link className="nav-link" to="/cart">  <i className='fas fa-shopping-cart cart-icon'></i> </Link>
                   <span className='b'>{numOfCartItems?numOfCartItems.numOfCartItems:0}</span>
               </li>
-          {userToken!==null ? <> <li className="nav-item">
-              <Link className="nav-link mx-2" onClick={()=>logOut()}>Logout</Link>
-            </li></>:''}
+
               
               </> 
-            }
+           :'' }
          </ul>
         </div>
   </>

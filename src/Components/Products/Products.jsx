@@ -7,6 +7,7 @@ import { cartContext } from '../../Context/CartContext';
 import { wishContext } from '../../Context/WishListContext';
 import ReactPaginate from 'react-paginate';
 import Pagination from '../Pagination/Pagination';
+import { userContext } from '../../Context/userContext';
  
 
 export default function Products({handleSearch}) {
@@ -24,6 +25,7 @@ export default function Products({handleSearch}) {
   let {addWish,getWishList,deleteFromWishList} = useContext(wishContext)
 
 let {addToCart}= useContext(cartContext)
+let {search}= useContext(userContext)
 
 async function AddToCartFunc(id){
  let respons =await addToCart(id)
@@ -56,7 +58,7 @@ getFromWishList()
 async function getFromWishList(){
 let res = await getWishList()
 setWishRes(res?.data?.data)
-if(res.data.status === 'success'){
+if(res?.data?.status === 'success'){
     toast('Product Added')
   }else{
     toast('NotFound')
@@ -76,10 +78,11 @@ setWishRes(res?.data?.data)
 }
 
 
+
   useEffect(()=>{    
     getProduct()
      getFromWishList()
-    // removeFromWishList()
+   
   },[])
 
  
@@ -87,7 +90,8 @@ setWishRes(res?.data?.data)
  <div className="container py-2 my-5">
 
 <div className="row g-5">
-  {!loading?products?.data?.map((product)=> <div key={product.id} className="col-md-2">
+  {!loading?products?.data?.map((product)=> 
+    <div key={product.id} className="col-md-2">
     <div className="product cursor-pointer" >
     <span className='heart-icon' onClick={()=>wishRes?.find((prd)=> prd.id ===product.id)? removeFromWishList(product.id): addToWishList(product.id)}  >
       <i className={`fas fa-heart ${wishRes?.find((prd)=> prd.id ===product.id) ? 'clicked':''} `}
@@ -110,14 +114,19 @@ setWishRes(res?.data?.data)
 
       <button className='btn bg-main w-100 text-white' onClick={()=>AddToCartFunc(product.id)}><i className='fas fa-shopping-cart'></i> Add To Cart</button>
     </div>
-   </div>
-
+   </div> 
 )
      : <HashLoader cssOverride={{position:'absolute' , left:'50%' , transform:'translateX(-50%)'}} color="#36d7b7" />    }
 {products.data?<Pagination  pageCount={pageCount} handlePages={handlePages}/>
 :''}
+
+
 </div>
 
+
+
+ 
+ 
 </div>
  
   </>

@@ -15,8 +15,8 @@ export default function Login() {
 
  async function submitForm(values){
   let {data} =await axios.post('https://ecommerce.routemisr.com/api/v1/auth/signin', values).catch(e=>{setError(e)})
-localStorage.setItem('token' , data.token)
-setUserToken(data.token)
+localStorage.setItem('token' , data?.token)
+setUserToken(data?.token)
   navigate('/')
 
 }
@@ -56,7 +56,7 @@ let formik=useFormik({
      value={formik.values.password} />
 {formik.errors.password&&formik.touched.password?<div className="alert alert-warning p-2">{formik.errors.password}</div>:''}
   
- {error ? <p className='alert alert-danger'>{error.response.data.message}</p> : ''}
+ {error ? <p className='alert alert-danger'>{error?.response.data.message}</p> : ''}
  <div className="btns d-flex justify-content-center flex-column align-items-center mt-3">
    
 <button type='submit' to='/products' disabled={!(formik.dirty&&formik.isValid)} className='btn cursor-pointer bg-main text-white me-3 mb-3' >Login</button>

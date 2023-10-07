@@ -32,6 +32,8 @@ import Profile from './Components/Profile/Profile';
 import AddInfo from './Components/AddInfo/AddInfo';
 import UserContextProvider, { userContext } from './Context/userContext';
 import { useContext } from 'react';
+import NotFound from './Components/NotFound/NotFound';
+import { useEffect } from 'react';
 
 let routes = createBrowserRouter([
   { path: '/', element: <Layout />, children: [
@@ -59,24 +61,22 @@ let routes = createBrowserRouter([
     {path:'change-password' , element:<ProtectedRoute> <ChangeMyPassword/>  </ProtectedRoute>},
     {path:'more-info' , element:<ProtectedRoute> <MoreInfo/>  </ProtectedRoute>},
     {path:'add-info' , element:<ProtectedRoute><AddInfo/></ProtectedRoute>  },
-    {path:'Register' , element:<ProtectedRoute><Register/></ProtectedRoute>},
+    {path:'Register' , element:<Register/>},
+    {path:'*' , element:<ProtectedRoute><NotFound/></ProtectedRoute>},
   ] }
 ])
 
 function App() {
-  let {userToken , setUserToken}= useContext(userContext)
-  
- if(localStorage.getItem('token') !== null){
-      setUserToken(localStorage.getItem('token'))
- }
+
+ 
   return<WishContextProvider>
 <CartContextProvider>
-
   <RouterProvider router={routes}>
   <Toaster/>
   </RouterProvider>
   </CartContextProvider> 
   </WishContextProvider>
+
 }
 
 export default App;

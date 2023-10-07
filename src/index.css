@@ -162,7 +162,10 @@ animation-duration: 4s;
     transition: 0.5s;
 
 }
- 
+.social-icons i:hover{
+    color: #0aad0a;
+    cursor: pointer;
+} 
 .boxContent{
     border: 1px solid var(--main-color);
     padding: 50px 20px;
