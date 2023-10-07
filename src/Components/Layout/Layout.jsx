@@ -7,6 +7,7 @@ import { useState ,useContext} from 'react';
 
 import { userContext } from '../../Context/userContext';
 import { useEffect } from 'react';
+import NotFound from '../NotFound/NotFound';
 export default function Layout() {
   let {userToken,setUserToken}= useContext(userContext)
 
@@ -18,9 +19,9 @@ export default function Layout() {
    return <>
   <Navbar/>
  
-  {/* <div className="container"> */}
+  <div className={!<NotFound/>? "container" :''}>
   <Outlet></Outlet>
 
-  {/* </div> */}
+  </div>
   </>
 }

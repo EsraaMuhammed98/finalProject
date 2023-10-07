@@ -33,6 +33,7 @@ export const MainNav = (pros) => {
 
     let [numOfCartItems , setNumOfCartItems] = useState(null)
     let [wishes , setWishes] = useState([])
+    let [loading , setLoading] = useState(true)
     
     
      let [profile , setProfile] = useState({})
@@ -46,6 +47,7 @@ export const MainNav = (pros) => {
       async function getWises(){   
         let {data} =await getWishList()
           setWishes(data)
+          setLoading(false)
         }
 
       async function deleteWish(id){
@@ -74,7 +76,7 @@ export const MainNav = (pros) => {
         </Link>
              <input type="search" onChange={handleSearch}    className='form-control w-50' id="" placeholder='Search On Products'    />
                  
-                  <div className="dropdown d-fex mx-3">
+                  <div className="dropdown mx-3">
                     <label className=" dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
                           Location
@@ -91,7 +93,7 @@ export const MainNav = (pros) => {
                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
              {userToken?<>
 
-          <li className="nav-item dropdown profile-list me-2">
+          <li className="nav-item dropdown profile-list me-1">
                 <Link className="nav-link dropdown-toggle" role="button" to='#' data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false"><i className="fa-solid fa-user-pen"></i></Link>
             <ul className='wish dropdown-menu' >
           {
@@ -131,11 +133,10 @@ export const MainNav = (pros) => {
               </li>
 
 
-          <li className="nav-item dropdown wish-list me-2 ">
+          <li className="nav-item dropdown wish-list me- ">
                 <Link className="nav-link dropdown-toggle" role="button" to='/wishlist' data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false" onClick={getWises} ><i className='far fa-heart'></i></Link>
             <ul className='wish dropdown-menu' >
-          {
-          wishes?<> 
+          {!loading&& wishes?<> 
             <li className='dropdown-item'><span className='text-main'>Count :</span> {wishes?.count}</li>
                     {wishes?.data?.slice(0,3).map((w)=><li key={w?.id} className='d-flex justify-content-between py-2 align-items-center'>
                       <div className="info d-flex flex-column">

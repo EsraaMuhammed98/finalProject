@@ -47,7 +47,7 @@ export default function Navbar() {
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
            {userToken !== null ?
                   <> 
-                             <li className="social-icons nav-item d-flex align-items-center">
+                             <li className="nav-item d-flex align-items-center">
               <i className='fab mx-2 fa-facebook'></i>
               <i className='fab mx-2 fa-twitter'></i>
               <i className='fab mx-2 fa-instagram'></i>

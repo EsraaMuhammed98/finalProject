@@ -4,9 +4,11 @@ import { wishContext } from "../../Context/WishListContext";
 import { useQuery } from "react-query";
 import sale from "../../Assets/images/sale.png";
 import { useEffect } from "react";
+import { HashLoader } from 'react-spinners';
 
 export default function WishList() {
   let [wishes, setWishes] = useState([]);
+  let [loading, setLoading] = useState(true);
   let { getWishList, deleteFromWishList } = useContext(wishContext);
 
   async function deleteWish(id) {
@@ -16,18 +18,20 @@ export default function WishList() {
   async function getAllWishes() {
     let { data } = await getWishList();
     setWishes(data);
+    setLoading(false)
   }
   useEffect(()=>{
     getAllWishes()
-  },[wishes])
+  },[])
+  console.log(wishes?.data)
   return (
     <>
-      <div className="content bg-main-light p-3">
-        <h1>WishList</h1>
-        {wishes&& wishes?.data?.data?.map((w) => (
+      <div className="container bg-main-light p-3">
+        <h1 className="text-center text-main">WishList</h1>
+        { !loading ? wishes?.data?.map((w) => (
           <>
-            {wishes?.filter(( f) => f.id === w.id )  ? (<><div className="row gy-3 align-items-center py-5 border-bottom " key={w.id} >
-                  <div className="col-md-2  py-2">
+            {wishes?.data.filter(( f) => f.id === w.id )  ? (<><div  className="row gy-3 align-items-center py-5 border-bottom " key={w.id} >
+                  <div key={w.id} className="col-md-2  py-2">
                     <img src={w.imageCover} className="w-100" alt={w.name} />
                   </div>
                   <div className="col-md-9 offset-1 py-2">
@@ -89,11 +93,10 @@ export default function WishList() {
                   </div>
                 </div>
               </>
-            ) : (
-              ""
-            )}
+            ) : ("")}
           </>
-        ))}
+              )):<HashLoader cssOverride={{position:'absolute' , left:'50%' , transform:'translateX(-50%)'}} color="#36d7b7" />
+                       }
       </div>
     </>
   );

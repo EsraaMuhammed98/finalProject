@@ -86,9 +86,9 @@ setWishRes(res?.data?.data)
   },[search])
 
  return <>
- <div className="container py-2 my-5">
+ <div className="container p-0 py-2 my-5">
 
-<div className="row g-5">
+<div className="row g-4 p-0">
 
 {search? products?.data?.map((product)=>product.title.includes(search)?
     <div key={product.id} className="col-md-2">

@@ -1,11 +1,14 @@
-
-.notFound{
+.error{
+    display: flex;
+    align-items: center;
+    min-height:81.7vh;
     background-color:#000;
-    min-height: 100vh;
+}
+.notFound{
+    padding: 50px ;
     color: #fff; 
     width: 100%;
-    margin: 0 !important;
-    display: flex;
+     display: flex;
     justify-content: center ;
     align-items: center;
 }

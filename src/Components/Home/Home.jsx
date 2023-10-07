@@ -8,9 +8,8 @@ import { useEffect } from 'react';
 
  
 
-export default function Home({handleSearch}) {
-//  console.log(handleSearch)
- return <>
+export default function Home() {
+  return <>
   <Offline>
 <div className='alert alert-warning w-25 mt-2 mx-auto text-center'>
     <i className='fas fa-wifi'></i> Offline!Check your connection.
@@ -19,6 +18,6 @@ export default function Home({handleSearch}) {
 
   <MainSlider/>
     <CategorySlider/>
- <Products handleSearch={handleSearch}/>
+ <Products/>
   </>
 }
