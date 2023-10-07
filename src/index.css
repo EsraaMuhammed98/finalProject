@@ -163,6 +163,18 @@ animation-duration: 4s;
     transition: 0.5s;
 
 }
+.up{
+    position: fixed;
+    z-index: 999;
+    bottom:60px ;
+    right: 20px;
+}
+.nav-link:hover{
+color: #0aad0a;
+}
+.social-icons i{
+    transition: 0.3s;
+}
 .social-icons i:hover{
     color: #0aad0a;
     cursor: pointer;
