@@ -83,14 +83,46 @@ setWishRes(res?.data?.data)
     getProduct()
      getFromWishList()
    
-  },[])
+  },[search])
 
- 
  return <>
  <div className="container py-2 my-5">
 
 <div className="row g-5">
-  {!loading?products?.data?.map((product)=> 
+
+{search? products?.data?.map((product)=>product.title.includes(search)?
+    <div key={product.id} className="col-md-2">
+    <div className="product cursor-pointer" >
+    <span className='heart-icon' onClick={()=>wishRes?.find((prd)=> prd.id ===product.id)? removeFromWishList(product.id): addToWishList(product.id)}  >
+      <i className={`fas fa-heart ${wishRes?.find((prd)=> prd.id ===product.id) ? 'clicked':''} `}
+
+    >
+        
+     </i>
+     </span>
+
+  <Link to={`/productdetails/${product.id}`}>
+    <img src={product.imageCover} className='w-100' alt="" />
+    <span className='text-main font-sm fw-bold'>{product.category.name}</span>
+    <h3 className="h6">{product.title.split(' ').slice(0,2).join(' ')}</h3>
+
+    <div className="rate d-flex justify-content-between py-2 btn-sm">
+      <span>{product.price} EGP</span>
+      <span><i className='fas fa-star rating-color'></i>{product.ratingsAverage}</span>
+    </div>
+</Link>
+
+      <button className='btn bg-main w-100 text-white' onClick={()=>AddToCartFunc(product.id)}><i className='fas fa-shopping-cart'></i> Add To Cart</button>
+    </div>
+   </div> 
+   :''
+)
+:''}
+
+
+
+{!loading?<>
+  {!search?products?.data?.map((product)=>
     <div key={product.id} className="col-md-2">
     <div className="product cursor-pointer" >
     <span className='heart-icon' onClick={()=>wishRes?.find((prd)=> prd.id ===product.id)? removeFromWishList(product.id): addToWishList(product.id)}  >
@@ -116,8 +148,18 @@ setWishRes(res?.data?.data)
     </div>
    </div> 
 )
-     : <HashLoader cssOverride={{position:'absolute' , left:'50%' , transform:'translateX(-50%)'}} color="#36d7b7" />    }
-{products.data?<Pagination  pageCount={pageCount} handlePages={handlePages}/>
+     : ''  }
+     </>
+    : <HashLoader cssOverride={{position:'absolute' , left:'50%' , transform:'translateX(-50%)'}} color="#36d7b7" />  
+}
+ 
+
+
+
+
+
+
+{!search&& products.data?<Pagination pageCount={pageCount} handlePages={handlePages}/>
 :''}
 
 

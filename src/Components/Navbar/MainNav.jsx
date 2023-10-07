@@ -53,7 +53,13 @@ export const MainNav = (pros) => {
         let {data} =await deleteFromWishList(id)
           setWishes(data)
         }
-     
+     function handleSearch(e){
+      let {value} = e.target
+      // let upperWord = value.split(' ').map((word) => word.toCapitalize()+word.substring(1)).join(' ');
+      let upperWord = value.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+        setSearch(upperWord)
+        console.log(upperWord)
+     }  
       
     useEffect(()=>{
       getWises()
@@ -66,7 +72,7 @@ export const MainNav = (pros) => {
         <Link className="navbar-brand" to="/">
           <img src={logo} alt="fresh cart logo" />
         </Link>
-             <input type="search" onChange={(e)=>setSearch(e.target.value)}    className='form-control w-50' id="" placeholder='Search On Products'    />
+             <input type="search" onChange={handleSearch}    className='form-control w-50' id="" placeholder='Search On Products'    />
                  
                   <div className="dropdown d-fex mx-3">
                     <label className=" dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
