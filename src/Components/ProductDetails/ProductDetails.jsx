@@ -39,7 +39,7 @@ let {data} = useQuery('productDetails' , ()=>getProductDetails(params.id))
   return <>
   <div className="container ">
   {data?.data.data ?  
-    <div className="row ">
+    <div className="row my-5">
       <div className="col-md-4">
           <Slider {...settings}>
            {data?.data.data.images.map((img)=><img key={data?.data.data.id} alt={data?.data.data.title} src={img} className='w-75'/>)}
